@@ -1,0 +1,407 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USUARIOS Y AUTENTICACIÓN
+// ============================================
+
+model User {
+  id                String    @id @default(cuid())
+  phoneNumber       String    @unique
+  phoneVerified     Boolean   @default(false)
+  telegramId        String?   @unique
+  telegramUsername  String?
+  
+  // Perfil
+  firstName         String?
+  lastName          String?
+  email             String?   @unique
+  avatar            String?
+  
+  // Roles
+  role              UserRole  @default(MEMBER)
+  isActive          Boolean   @default(true)
+  isBanned          Boolean   @default(false)
+  
+  // Metadata
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  lastLoginAt       DateTime?
+  
+  // Relaciones
+  votes             Vote[]
+  threads           Thread[]
+  replies           Reply[]
+  notifications     Notification[]
+  auditLogs         AuditLog[]
+  sessions          Session[]
+  preferences       UserPreferences?
+  
+  @@index([phoneNumber])
+  @@index([telegramId])
+  @@index([email])
+}
+
+enum UserRole {
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+
+model Session {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  token         String   @unique
+  refreshToken  String?  @unique
+  expiresAt     DateTime
+  
+  ipAddress     String?
+  userAgent     String?
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([userId])
+  @@index([token])
+}
+
+model OTPCode {
+  id            String   @id @default(cuid())
+  phoneNumber   String
+  code          String
+  expiresAt     DateTime
+  verified      Boolean  @default(false)
+  attempts      Int      @default(0)
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([phoneNumber, code])
+  @@index([expiresAt])
+}
+
+model LinkCode {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  telegramId    String
+  expiresAt     DateTime
+  used          Boolean  @default(false)
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([code])
+  @@index([telegramId])
+}
+
+// ============================================
+// SISTEMA DE VOTACIONES
+// ============================================
+
+model Poll {
+  id            String      @id @default(cuid())
+  title         String
+  description   String      @db.Text
+  
+  // Configuración
+  pollType      PollType
+  isAnonymous   Boolean     @default(false)
+  allowMultiple Boolean     @default(false)
+  maxChoices    Int?
+  
+  // Estado
+  status        PollStatus  @default(DRAFT)
+  
+  // Fechas
+  startDate     DateTime?
+  endDate       DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // Relaciones
+  options       PollOption[]
+  votes         Vote[]
+  
+  @@index([status])
+  @@index([startDate, endDate])
+  @@index([createdAt])
+}
+
+enum PollType {
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  YES_NO
+}
+
+enum PollStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+  CANCELLED
+}
+
+model PollOption {
+  id          String   @id @default(cuid())
+  pollId      String
+  poll        Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  
+  text        String
+  order       Int
+  
+  votes       Vote[]
+  
+  @@index([pollId])
+}
+
+model Vote {
+  id          String      @id @default(cuid())
+  
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  pollId      String
+  poll        Poll        @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  
+  optionId    String
+  option      PollOption  @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  ipAddress   String?
+  userAgent   String?
+  votedAt     DateTime    @default(now())
+  
+  // Prevención de duplicados: un usuario solo puede votar una vez por poll
+  @@unique([userId, pollId, optionId])
+  @@index([pollId])
+  @@index([userId])
+  @@index([votedAt])
+}
+
+// ============================================
+// SISTEMA DE FORO
+// ============================================
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  icon        String?
+  color       String?
+  order       Int      @default(0)
+  
+  threads     Thread[]
+  
+  @@index([slug])
+  @@index([order])
+}
+
+model Thread {
+  id            String      @id @default(cuid())
+  
+  title         String
+  content       String      @db.Text
+  
+  // Autor
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  // Categoría
+  categoryId    String
+  category      Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  // Estado
+  isPinned      Boolean     @default(false)
+  isLocked      Boolean     @default(false)
+  isResolved    Boolean     @default(false)
+  
+  // Metadata
+  views         Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // Relaciones
+  replies       Reply[]
+  tags          ThreadTag[]
+  attachments   Attachment[]
+  
+  @@index([categoryId])
+  @@index([authorId])
+  @@index([createdAt])
+  @@index([isPinned, createdAt])
+}
+
+model Reply {
+  id            String       @id @default(cuid())
+  
+  content       String       @db.Text
+  
+  // Autor
+  authorId      String
+  author        User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  // Thread
+  threadId      String
+  thread        Thread       @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  
+  // Respuesta a otra respuesta (opcional)
+  parentId      String?
+  parent        Reply?       @relation("ReplyToReply", fields: [parentId], references: [id], onDelete: SetNull)
+  children      Reply[]      @relation("ReplyToReply")
+  
+  // Metadata
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  
+  attachments   Attachment[]
+  
+  @@index([threadId])
+  @@index([authorId])
+  @@index([parentId])
+  @@index([createdAt])
+}
+
+model Tag {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  slug        String      @unique
+  
+  threads     ThreadTag[]
+  
+  @@index([slug])
+}
+
+model ThreadTag {
+  threadId    String
+  thread      Thread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  
+  tagId       String
+  tag         Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  @@id([threadId, tagId])
+  @@index([threadId])
+  @@index([tagId])
+}
+
+model Attachment {
+  id          String   @id @default(cuid())
+  
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int
+  url         String
+  
+  // Puede estar en Thread o Reply
+  threadId    String?
+  thread      Thread?  @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  
+  replyId     String?
+  reply       Reply?   @relation(fields: [replyId], references: [id], onDelete: Cascade)
+  
+  uploadedAt  DateTime @default(now())
+  
+  @@index([threadId])
+  @@index([replyId])
+}
+
+// ============================================
+// SISTEMA DE NOTIFICACIONES
+// ============================================
+
+model Notification {
+  id          String            @id @default(cuid())
+  
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type        NotificationType
+  title       String
+  message     String            @db.Text
+  
+  // Metadata
+  data        Json?
+  isRead      Boolean           @default(false)
+  
+  // Canales
+  sentViaApp      Boolean       @default(false)
+  sentViaTelegram Boolean       @default(false)
+  sentViaSMS      Boolean       @default(false)
+  
+  createdAt   DateTime          @default(now())
+  readAt      DateTime?
+  
+  @@index([userId, isRead])
+  @@index([createdAt])
+}
+
+enum NotificationType {
+  NEW_POLL
+  POLL_REMINDER
+  POLL_CLOSED
+  THREAD_REPLY
+  MENTION
+  SYSTEM
+}
+
+// ============================================
+// SISTEMA DE AUDITORÍA
+// ============================================
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  action      String
+  entity      String
+  entityId    String?
+  
+  // Detalles
+  details     Json?
+  ipAddress   String?
+  userAgent   String?
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@index([action])
+}
+
+// ============================================
+// PREFERENCIAS DE USUARIO
+// ============================================
+
+model UserPreferences {
+  id                    String  @id @default(cuid())
+  userId                String  @unique
+  
+  // Notificaciones
+  notifyNewPoll         Boolean @default(true)
+  notifyPollReminder    Boolean @default(true)
+  notifyThreadReply     Boolean @default(true)
+  notifyMention         Boolean @default(true)
+  
+  // Canales preferidos
+  preferTelegram        Boolean @default(true)
+  preferSMS             Boolean @default(false)
+  
+  // Privacidad
+  showProfile           Boolean @default(true)
+  showActivity          Boolean @default(true)
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
