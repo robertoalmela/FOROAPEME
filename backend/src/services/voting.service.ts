@@ -1,4 +1,5 @@
 import prisma from '../lib/prisma';
+import notificationService from './notification.service';
 
 export class VotingService {
   /**
@@ -56,8 +57,7 @@ export class VotingService {
       },
     });
 
-    // TODO: Enviar notificaciones a todos los usuarios
-    // await notificationService.notifyNewPoll(pollId);
+    await notificationService.notifyNewPoll(pollId);
 
     return poll;
   }
@@ -119,7 +119,7 @@ export class VotingService {
     }
 
     // Verificar que las opciones existen
-    const validOptions = poll.options.filter((opt) => optionIds.includes(opt.id));
+    const validOptions = poll.options.filter((opt: { id: string }) => optionIds.includes(opt.id));
     if (validOptions.length !== optionIds.length) {
       throw new Error('Una o más opciones no son válidas');
     }
@@ -189,7 +189,7 @@ export class VotingService {
     const totalVoters = uniqueVoters.length;
     const totalVotes = poll._count.votes;
 
-    const results = poll.options.map((option) => ({
+    const results = poll.options.map((option: { id: string; text: string; _count: { votes: number } }) => ({
       id: option.id,
       text: option.text,
       votes: option._count.votes,
@@ -203,7 +203,7 @@ export class VotingService {
         where: { userId, pollId },
         select: { optionId: true },
       });
-      userVote = votes.map((v) => v.optionId);
+      userVote = votes.map((v: { optionId: string }) => v.optionId);
     }
 
     return {
@@ -236,7 +236,7 @@ export class VotingService {
       distinct: ['userId'],
     });
 
-    const votedUserIds = voted.map((v) => v.userId);
+    const votedUserIds = voted.map((v: { userId: string }) => v.userId);
 
     // Total de usuarios activos
     const totalUsers = await prisma.user.count({
@@ -282,10 +282,30 @@ export class VotingService {
       },
     });
 
-    // TODO: Enviar notificación de cierre
-    // await notificationService.notifyPollClosed(pollId);
+    await notificationService.notifyPollClosed(pollId);
 
     return poll;
+  }
+
+  /**
+   * Elimina una votación
+   */
+  async deletePoll(pollId: string) {
+    const poll = await prisma.poll.findUnique({
+      where: { id: pollId },
+    });
+
+    if (!poll) {
+      throw new Error('Votación no encontrada');
+    }
+
+    if (poll.status === 'ACTIVE') {
+      throw new Error('No se puede eliminar una votación activa. Ciérrala primero.');
+    }
+
+    await prisma.poll.delete({
+      where: { id: pollId },
+    });
   }
 
   /**

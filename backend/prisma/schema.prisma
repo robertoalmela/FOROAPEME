@@ -2,13 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider     = "prisma-client-js"
+  output       = "../generated/prisma"
+  engineType   = "library"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // ============================================
@@ -19,6 +19,7 @@ model User {
   id                String    @id @default(cuid())
   phoneNumber       String    @unique
   phoneVerified     Boolean   @default(false)
+  dni               String    @unique
   telegramId        String?   @unique
   telegramUsername  String?
   
@@ -50,6 +51,7 @@ model User {
   @@index([phoneNumber])
   @@index([telegramId])
   @@index([email])
+  @@index([dni])
 }
 
 enum UserRole {
@@ -192,17 +194,24 @@ model Vote {
 
 model Category {
   id          String   @id @default(cuid())
-  name        String   @unique
-  slug        String   @unique
+  name        String
+  slug        String
   description String?
   icon        String?
   color       String?
   order       Int      @default(0)
-  
+
+  // Subforos (jerárquico: comarcas -> subcategorías)
+  parentId    String?
+  parent      Category? @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children    Category[] @relation("CategoryHierarchy")
+
   threads     Thread[]
-  
+
+  @@unique([slug, parentId])
   @@index([slug])
   @@index([order])
+  @@index([parentId])
 }
 
 model Thread {
@@ -387,6 +396,7 @@ model AuditLog {
 model UserPreferences {
   id                    String  @id @default(cuid())
   userId                String  @unique
+  user                  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   // Notificaciones
   notifyNewPoll         Boolean @default(true)
