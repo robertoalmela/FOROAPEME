@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+const apiErrorMessage = (err: unknown, fallback: string): string =>
+  (err as { response?: { data?: { error?: string } } })?.response?.data?.error || fallback;
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/auth';
 import { useAuthStore } from '../store/auth';
@@ -26,8 +29,8 @@ export function LoginPage() {
       await authService.sendOTP(formattedPhone);
       setPhone(formattedPhone);
       setStep('otp');
-    } catch (err: any) {
-      setError(err.response?.data?.error || 'Error enviando código');
+    } catch (err) {
+      setError(apiErrorMessage(err, 'Error enviando código'));
     } finally {
       setLoading(false);
     }
@@ -49,8 +52,8 @@ export function LoginPage() {
 
       login(result.token, result.user);
       navigate('/');
-    } catch (err: any) {
-      setError(err.response?.data?.error || 'Código inválido');
+    } catch (err) {
+      setError(apiErrorMessage(err, 'Código inválido'));
     } finally {
       setLoading(false);
     }
@@ -65,8 +68,8 @@ export function LoginPage() {
       const result = await authService.register(tempToken, dni, firstName, lastName);
       login(result.token, result.user);
       navigate('/');
-    } catch (err: any) {
-      setError(err.response?.data?.error || 'Error en el registro');
+    } catch (err) {
+      setError(apiErrorMessage(err, 'Error en el registro'));
     } finally {
       setLoading(false);
     }

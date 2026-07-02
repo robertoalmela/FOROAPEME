@@ -127,7 +127,7 @@ export interface Notification {
   type: 'NEW_POLL' | 'POLL_REMINDER' | 'POLL_CLOSED' | 'THREAD_REPLY' | 'MENTION' | 'SYSTEM';
   title: string;
   message: string;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
   isRead: boolean;
   sentViaApp: boolean;
   sentViaTelegram: boolean;
