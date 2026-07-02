@@ -38,6 +38,7 @@ services:
       CORS_ORIGIN: ${PUBLIC_URL:-http://localhost:8081}
       WEB_URL: ${PUBLIC_URL:-http://localhost:8081}
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      DEMO_OTP_CODE: ${DEMO_OTP_CODE:-}
     depends_on:
       postgres:
         condition: service_healthy

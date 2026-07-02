@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APEME Alicante - Plataforma de Gobernanza Digital</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: 2.8rem; margin-bottom: 16px; font-weight: 800; }
+    .hero .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 32px; }
+    .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; margin-bottom: 24px; }
+
+    /* Sections */
+    section { padding: 60px 0; }
+    section:nth-child(even) { background: #f8f9fa; }
+    h2 { font-size: 2rem; margin-bottom: 12px; color: #0f3460; }
+    h3 { font-size: 1.3rem; margin-bottom: 8px; color: #16213e; }
+    .section-subtitle { color: #666; font-size: 1.1rem; margin-bottom: 40px; }
+
+    /* Problem/Solution */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 32px; }
+    .problem-card { background: white; padding: 28px; border-radius: 12px; border-left: 4px solid #e74c3c; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .problem-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .problem-card h4 { font-size: 1.1rem; margin-bottom: 8px; color: #e74c3c; }
+
+    .solution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 32px; }
+    .solution-card { background: white; padding: 28px; border-radius: 12px; border-left: 4px solid #27ae60; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .solution-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .solution-card h4 { font-size: 1.1rem; margin-bottom: 8px; color: #27ae60; }
+
+    /* Features */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 40px; }
+    .feature { background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; }
+    .feature .icon { font-size: 3rem; margin-bottom: 16px; }
+    .feature h3 { margin-bottom: 12px; }
+    .feature p { color: #666; }
+
+    /* Comarcas */
+    .comarcas-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .comarca { background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .comarca .icon { font-size: 2rem; }
+    .comarca h4 { margin-top: 8px; }
+    .comarca .subs { font-size: 0.85rem; color: #888; margin-top: 4px; }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 40px 0; }
+    .stat { text-align: center; }
+    .stat .number { font-size: 2.5rem; font-weight: 800; color: #0f3460; }
+    .stat .label { color: #666; font-size: 0.9rem; }
+
+    /* Pricing */
+    .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .plan { background: white; padding: 36px; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: center; position: relative; }
+    .plan.featured { border: 2px solid #0f3460; transform: scale(1.02); }
+    .plan.featured::before { content: 'RECOMENDADO'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0f3460; color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .plan .price { font-size: 2.5rem; font-weight: 800; color: #0f3460; margin: 16px 0; }
+    .plan .price span { font-size: 1rem; font-weight: 400; color: #666; }
+    .plan ul { list-style: none; margin: 24px 0; text-align: left; }
+    .plan li { padding: 8px 0; border-bottom: 1px solid #eee; }
+    .plan li::before { content: '✓ '; color: #27ae60; font-weight: 700; }
+
+    /* CTA */
+    .cta { background: linear-gradient(135deg, #0f3460, #1a1a2e); color: white; text-align: center; padding: 80px 0; }
+    .cta h2 { color: white; margin-bottom: 16px; }
+    .cta p { opacity: 0.9; margin-bottom: 32px; font-size: 1.1rem; }
+    .btn { display: inline-block; background: white; color: #0f3460; padding: 16px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: transform 0.2s; }
+    .btn:hover { transform: translateY(-2px); }
+
+    /* Footer */
+    footer { background: #1a1a2e; color: rgba(255,255,255,0.6); text-align: center; padding: 40px 0; font-size: 0.9rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media print {
+      .hero { background: #0f3460 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cta { background: #0f3460 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <div class="badge">Plataforma exclusiva para APEME Alicante</div>
+      <h1>Gobernanza Digital para tu Asociación</h1>
+      <p class="subtitle">Votaciones seguras, foros por comarcas y comunicación directa con todos los asociados</p>
+      <p style="opacity: 0.7; font-size: 0.95rem;">Diseñado específicamente para asociaciones de empresas con presencia territorial</p>
+    </div>
+  </div>
+
+  <!-- EL PROBLEMA -->
+  <section>
+    <div class="container">
+      <h2>¿Reconoces estas situaciones?</h2>
+      <p class="section-subtitle">La mayoría de asociaciones enfrentan estos problemas a diario</p>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="icon">📧</div>
+          <h4>Comunicación dispersa</h4>
+          <p>Emails, WhatsApps, llamadas... la información se pierde y no todos reciben lo mismo.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon">🗳️</div>
+          <h4>Votaciones complicadas</h4>
+          <p>Organizar votaciones presenciales es caro, lento y la participación siempre es baja.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon">🏘️</div>
+          <h4>Cada comarca es diferente</h4>
+          <p>Vega Baja, Baix Vinalopó, Alacantí... cada zona tiene su normativa y sus directores.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon">📋</div>
+          <h4>Conocimiento disperso</h4>
+          <p>La experiencia y el saber hacer de los asociados no se comparte ni se organiza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA SOLUCIÓN -->
+  <section>
+    <div class="container">
+      <h2>Una plataforma que lo cambia todo</h2>
+      <p class="section-subtitle">Todo lo que tu asociación necesita en un solo lugar</p>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="icon">✅</div>
+          <h4>Votaciones online seguras</h4>
+          <p>Un usuario = un voto garantizado. Resultados en tiempo real. Auditoría completa.</p>
+        </div>
+        <div class="solution-card">
+          <div class="icon">✅</div>
+          <h4>Foros organizados por comarcas</h4>
+          <p>Cada comarca tiene su espacio con subforos para normativa, directores y ofertas.</p>
+        </div>
+        <div class="solution-card">
+          <div class="icon">✅</div>
+          <h4>Acceso desde Telegram</h4>
+          <p>Los asociados pueden votar y participar directamente desde Telegram, sin instalar nada.</p>
+        </div>
+        <div class="solution-card">
+          <div class="icon">✅</div>
+          <h4>Registro sin contraseñas</h4>
+          <p>Solo necesitas el número de teléfono. Código de verificación y listo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES -->
+  <section>
+    <div class="container">
+      <h2>Funcionalidades principales</h2>
+      <p class="section-subtitle">Herramientas diseñadas para la gestión diaria de tu asociación</p>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="icon">🗳️</div>
+          <h3>Sistema de Votación</h3>
+          <p>Votaciones de elección única, múltiple y Sí/No. Anonimato configurable. Resultados en tiempo real. Reportes de participación.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">💬</div>
+          <h3>Foro por Comarcas</h3>
+          <p>Estructura jerárquica: comarca → subforos (normativa, directores, ofertas). Hilos con respuestas, archivos y etiquetas.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📱</div>
+          <h3>Bot de Telegram</h3>
+          <p>Vota desde Telegram. Recibe notificaciones. Crea hilos. Todo sin salir de tu mensajero favorito.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔐</div>
+          <h3>Acceso Seguro</h3>
+          <p>Registro con número de teléfono. Verificación OTP. Sin contraseñas que olvidar. Sesiones seguras.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📊</div>
+          <h3>Panel de Administración</h3>
+          <p>Crea votaciones, gestiona usuarios, modera foros. Control total desde un panel intuitivo.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔔</div>
+          <h3>Notificaciones</h3>
+          <p>Avisa a todos los asociados cuando hay una nueva votación, respuesta en el foro o noticia importante.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRUCTURA POR COMARCAS -->
+  <section>
+    <div class="container">
+      <h2>Organización territorial</h2>
+      <p class="section-subtitle">Cada comarca tiene su espacio independiente con subforos especializados</p>
+      <div class="comarcas-list">
+        <div class="comarca">
+          <div class="icon">🏘️</div>
+          <h4>Vega Baja</h4>
+          <div class="subs">Normativa · Directores · Ofertas</div>
+        </div>
+        <div class="comarca">
+          <div class="icon">🏘️</div>
+          <h4>Baix Vinalopó</h4>
+          <div class="subs">Normativa · Directores · Ofertas</div>
+        </div>
+        <div class="comarca">
+          <div class="icon">🏘️</div>
+          <h4>Alacantí</h4>
+          <div class="subs">Normativa · Directores</div>
+        </div>
+        <div class="comarca">
+          <div class="icon">🏘️</div>
+          <h4>Vinalopó Mitjà</h4>
+          <div class="subs">Normativa · Directores</div>
+        </div>
+      </div>
+      <p style="margin-top: 24px; color: #666; text-align: center;">La estructura es flexible: se pueden añadir más comarcas y subforos según las necesidades de la asociación.</p>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section>
+    <div class="container">
+      <h2>Diseñado para crecer contigo</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="number">800+</div>
+          <div class="label">Usuarios soportados</div>
+        </div>
+        <div class="stat">
+          <div class="number">99.9%</div>
+          <div class="label">Disponibilidad</div>
+        </div>
+        <div class="stat">
+          <div class="number">&lt;2s</div>
+          <div class="label">Tiempo de respuesta</div>
+        </div>
+        <div class="stat">
+          <div class="number">24/7</div>
+          <div class="label">Acceso desde cualquier lugar</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section>
+    <div class="container">
+      <h2>Inversión</h2>
+      <p class="section-subtitle">Costes operativos mensuales estimados</p>
+      <div class="pricing">
+        <div class="plan">
+          <h3>MVP Básico</h3>
+          <div class="price">50€<span>/mes</span></div>
+          <ul>
+            <li>Votaciones online</li>
+            <li>Foro con categorías</li>
+            <li>Registro por teléfono</li>
+            <li>Notificaciones por email</li>
+            <li>Hosting incluido</li>
+          </ul>
+        </div>
+        <div class="plan featured">
+          <h3>Completo</h3>
+          <div class="price">100€<span>/mes</span></div>
+          <ul>
+            <li>Todo lo del MVP</li>
+            <li>Bot de Telegram</li>
+            <li>Foros por comarcas</li>
+            <li>Panel de administración</li>
+            <li>Soporte prioritario</li>
+            <li>Backups automáticos</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <h3>Enterprise</h3>
+          <div class="price">A medida</div>
+          <ul>
+            <li>Todo lo del Completo</li>
+            <li>Integración con IA</li>
+            <li>App móvil nativa</li>
+            <li>SLA personalizado</li>
+            <li>Formación presencial</li>
+            <li>Desarrollo a medida</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="container">
+      <h2>¿Listo para modernizar tu asociación?</h2>
+      <p>Agenda una demo personalizada y descubre cómo la plataforma puede transformar la gestión de APEME Alicante.</p>
+      <a href="#" class="btn">Solicitar Demo Gratuita</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Plataforma de Gobernanza Digital para APEME Alicante</p>
+      <p style="margin-top: 8px;">Desarrollado con ❤️ para la asociación</p>
+    </div>
+  </footer>
+
+</body>
+</html>

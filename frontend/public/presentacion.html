@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEME Alicante | Plataforma de Gobernanza Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="bg-blue-600 text-white font-bold text-2xl p-3 rounded-xl">A</div>
+                <div class="ml-4">
+                    <h1 class="text-2xl font-bold text-gray-800">APEME <span class="text-blue-600">Alicante</span></h1>
+                    <p class="text-gray-500 text-sm">Plataforma de Gobernanza Digital</p>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium">Características</a>
+                <a href="#demo" class="text-gray-700 hover:text-blue-600 font-medium">Demo</a>
+                <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium">Planes</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
+            </div>
+            <div>
+                <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all">Solicitar Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white">
+        <div class="container mx-auto px-6 py-24 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Participación Democrática <br> <span class="text-yellow-300">en la Era Digital</span></h1>
+            <p class="text-xl mb-10 max-w-3xl mx-auto opacity-90">
+                Una plataforma integral de votación, foro y comunicación diseñada específicamente para APEME Alicante. Conecta a 800 asociados, facilita la toma de decisiones y construye conocimiento colectivo.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="#demo" class="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all">
+                    <i class="fas fa-play-circle mr-2"></i> Ver Demo Interactiva
+                </a>
+                <a href="#features" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-700 transition-all">
+                    <i class="fas fa-list-alt mr-2"></i> Ver Características
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-5xl font-bold text-blue-600">800+</div>
+                    <div class="text-gray-600 mt-2">Asociados</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-green-600">24/7</div>
+                    <div class="text-gray-600 mt-2">Disponibilidad</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-purple-600">100%</div>
+                    <div class="text-gray-600 mt-2">Seguridad en Votos</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-red-600">0</div>
+                    <div class="text-gray-600 mt-2">Contraseñas Olvidadas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Características <span class="text-blue-600">Principales</span></h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">Diseñado específicamente para las necesidades de una asociación provincial con 800 usuarios.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover transition-all">
+                    <div class="feature-icon gradient-bg text-white">
+                        <i class="fas fa-vote-yea text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Sistema de Votación Digital</h3>
+                    <p class="text-gray-600 mb-6">
+                        Elecciones únicas, múltiples o Sí/No con total seguridad. Un usuario = un voto garantizado por blockchain interno. Resultados en tiempo real y auditoría completa.
+                    </p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Anonimato configurable</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Reportes de participación</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Exportación a PDF/Excel</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover transition-all">
+                    <div class="feature-icon bg-green-500 text-white">
+                        <i class="fas fa-comments text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Foro Inteligente</h3>
+                    <p class="text-gray-600 mb-6">
+                        Base de conocimiento organizada por categorías (ofertas, normativa, dudas técnicas). Búsqueda semántica, etiquetado automático y moderación integrada.
+                    </p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Subida de archivos</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Respuestas anidadas</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Recomendaciones IA</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover transition-all">
+                    <div class="feature-icon bg-purple-500 text-white">
+                        <i class="fab fa-telegram text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Integración Telegram</h3>
+                    <p class="text-gray-600 mb-6">
+                        Bot interactivo que notifica nuevas votaciones, respuestas en hilos y envía resúmenes semanales. Los usuarios pueden votar y participar directamente desde Telegram.
+                    </p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Notificaciones push</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Comandos rápidos</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Vinculación segura</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover transition-all">
+                    <div class="feature-icon bg-red-500 text-white">
+                        <i class="fas fa-mobile-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Sin Contraseñas</h3>
+                    <p class="text-gray-600 mb-6">
+                        Registro con número de teléfono y verificación OTP. Login con enlace mágico. Cero problemas de contraseñas olvidadas, máxima seguridad y facilidad de uso.
+                    </p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Verificación SMS/Telegram</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Sesiones seguras JWT</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Multi-dispositivo</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover transition-all">
+                    <div class="feature-icon bg-yellow-500 text-white">
+                        <i class="fas fa-robot text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Inteligencia Artificial</h3>
+                    <p class="text-gray-600 mb-6">
+                        Clasificación automática de contenido, detección de duplicados, resúmenes semanales y búsqueda semántica. Mejora constante con el uso.
+                    </p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Análisis de sentimiento</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Sugerencias de tags</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Alertas de tendencias</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover transition-all">
+                    <div class="feature-icon bg-indigo-500 text-white">
+                        <i class="fas fa-chart-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Panel de Administración</h3>
+                    <p class="text-gray-600 mb-6">
+                        Control completo de usuarios, votaciones, moderación y estadísticas. Interfaz intuitiva para administradores no técnicos.
+                    </p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Dashboard en tiempo real</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Exportación de datos</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Control de permisos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Demo <span class="text-blue-600">Interactiva</span></h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">Explora las funcionalidades clave de la plataforma a través de esta simulación.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="bg-gray-800 rounded-2xl p-2 shadow-2xl">
+                        <div class="bg-gray-900 p-4 flex items-center">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="text-white text-center flex-grow">panel.apeme-alicante.es</div>
+                        </div>
+                        <div class="p-8">
+                            <div class="text-white mb-6">
+                                <h3 class="text-2xl font-bold mb-2">Votación Activa: Presupuesto 2025</h3>
+                                <p class="text-gray-300">¿Está de acuerdo con la distribución propuesta para el presupuesto del próximo año?</p>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
+                                    <span class="text-white">Opción A: Sí, totalmente</span>
+                                    <div class="bg-blue-600 text-white px-4 py-1 rounded">65%</div>
+                                </div>
+                                <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
+                                    <span class="text-white">Opción B: Sí, con modificaciones</span>
+                                    <div class="bg-green-600 text-white px-4 py-1 rounded">25%</div>
+                                </div>
+                                <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
+                                    <span class="text-white">Opción C: No</span>
+                                    <div class="bg-red-600 text-white px-4 py-1 rounded">10%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-4">
+                                <button class="bg-blue-600 text-white px-6 py-3 rounded-lg flex-grow hover:bg-blue-700 transition-all">
+                                    <i class="fas fa-check-circle mr-2"></i> Votar Ahora
+                                </button>
+                                <button class="bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-all">
+                                    <i class="fas fa-chart-bar mr-2"></i> Ver Detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-3xl font-bold mb-6">Experimenta la <span class="text-blue-600">Plataforma</span></h3>
+                    <p class="text-gray-600 mb-8">
+                        Esta demo muestra el sistema de votación en tiempo real. Los porcentajes se actualizan automáticamente a medida que los usuarios votan. Prueba a simular un voto haciendo clic en "Votar Ahora".
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-bolt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Resultados en Tiempo Real</h4>
+                                <p class="text-gray-600">Visualiza cómo evolucionan las votaciones segundo a segundo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-100 text-green-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-shield-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Seguridad Garantizada</h4>
+                                <p class="text-gray-600">Cada voto es único, verificable y anónimo (si se configura así).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 text-purple-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-mobile-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Acceso Multiplataforma</h4>
+                                <p class="text-gray-600">Desde cualquier navegador o directamente desde Telegram.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <a href="#contact" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-all inline-block">
+                            <i class="fas fa-calendar-alt mr-2"></i> Solicitar Demo Personalizada
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Stack <span class="text-blue-600">Tecnológico</span></h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">Tecnologías modernas, robustas y escalables para garantizar el mejor rendimiento.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+                    <div class="text-4xl text-green-500 mb-2">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <div class="font-bold">Node.js</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+                    <div class="text-4xl text-blue-500 mb-2">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <div class="font-bold">React</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+                    <div class="text-4xl text-blue-700 mb-2">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="font-bold">PostgreSQL</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+                    <div class="text-4xl text-blue-400 mb-2">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="font-bold">Telegram API</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+                    <div class="text-4xl text-green-600 mb-2">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="font-bold">AWS</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+                    <div class="text-4xl text-purple-600 mb-2">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="font-bold">OpenAI</div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Utilizamos las mejores prácticas de desarrollo: arquitectura escalable, microservicios, containers Docker, CI/CD automatizado y monitoreo 24/7. La plataforma está diseñada para crecer con tu asociación.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Planes <span class="text-blue-600">Flexibles</span></h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16">Elige el plan que mejor se adapte a las necesidades de APEME Alicante.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Plan Básico -->
+                <div class="bg-gray-50 p-8 rounded-2xl border-2 border-gray-200">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Plan Básico</h3>
+                        <p class="text-gray-600">Para asociaciones pequeñas</p>
+                    </div>
+                    <div class="text-center mb-8">
+                        <span class="text-5xl font-bold">€499</span>
+                        <span class="text-gray-600">/mes</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Hasta 500 usuarios</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Sistema de votación básico</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Foro con categorías</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Integración Telegram básica</li>
+                        <li><i class="fas fa-times text-gray-400 mr-2"></i> <span class="text-gray-500">Inteligencia Artificial</span></li>
+                        <li><i class="fas fa-times text-gray-400 mr-2"></i> <span class="text-gray-500">Soporte prioritario</span></li>
+                    </ul>
+                    <a href="#contact" class="block text-center bg-gray-200 text-gray-800 py-3 rounded-lg font-bold hover:bg-gray-300 transition-all">
+                        Solicitar Información
+                    </a>
+                </div>
+                
+                <!-- Plan Premium (Recomendado) -->
+                <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-8 rounded-2xl text-white transform scale-105 shadow-2xl">
+                    <div class="text-center mb-8">
+                        <span class="bg-white text-blue-600 px-4 py-1 rounded-full text-sm font-bold">RECOMENDADO</span>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Plan Premium</h3>
+                        <p>Para APEME Alicante (800 usuarios)</p>
+                    </div>
+                    <div class="text-center mb-8">
+                        <span class="text-5xl font-bold">€899</span>
+                        <span class="opacity-80">/mes</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li><i class="fas fa-check mr-2"></i> <strong>Hasta 1000 usuarios</strong></li>
+                        <li><i class="fas fa-check mr-2"></i> Sistema de votación avanzado</li>
+                        <li><i class="fas fa-check mr-2"></i> Foro con IA y búsqueda semántica</li>
+                        <li><i class="fas fa-check mr-2"></i> Bot Telegram completo</li>
+                        <li><i class="fas fa-check mr-2"></i> Inteligencia Artificial incluida</li>
+                        <li><i class="fas fa-check mr-2"></i> Soporte prioritario 24/7</li>
+                        <li><i class="fas fa-check mr-2"></i> Panel de administración avanzado</li>
+                    </ul>
+                    <a href="#contact" class="block text-center bg-white text-blue-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition-all">
+                        Solicitar Demo Personalizada
+                    </a>
+                </div>
+                
+                <!-- Plan Enterprise -->
+                <div class="bg-gray-50 p-8 rounded-2xl border-2 border-gray-200">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Plan Enterprise</h3>
+                        <p class="text-gray-600">Para grandes federaciones</p>
+                    </div>
+                    <div class="text-center mb-8">
+                        <span class="text-5xl font-bold">€1,499</span>
+                        <span class="text-gray-600">/mes</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Usuarios ilimitados</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Votación con blockchain</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Foro multi-idioma</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Multi-bot Telegram</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> IA avanzada personalizada</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Soporte dedicado</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> White-label</li>
+                    </ul>
+                    <a href="#contact" class="block text-center bg-gray-200 text-gray-800 py-3 rounded-lg font-bold hover:bg-gray-300 transition-all">
+                        Contactar Ventas
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Todos los planes incluyen: hosting, mantenimiento, actualizaciones de seguridad, backup diario y certificado SSL. Sin costes ocultos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Solicita tu <span class="text-blue-400">Demo Personalizada</span></h2>
+            <p class="text-gray-300 text-center max-w-2xl mx-auto mb-16">
+                Agenda una demostración personalizada para tu equipo. Te mostraremos cómo la plataforma puede transformar la participación en APEME Alicante.
+            </p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-bold mb-8">Contacta con nuestro equipo</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white p-3 rounded-lg mr-4">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Demo Personalizada</h4>
+                                <p class="text-gray-300">30 minutos online. Sin compromiso.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-600 text-white p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Teléfono</h4>
+                                <p class="text-gray-300">+34 96 123 45 67</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-purple-600 text-white p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Email</h4>
+                                <p class="text-gray-300">ventas@apeme-alicante.es</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-yellow-600 text-white p-3 rounded-lg mr-4">
+                                <i class="fab fa-telegram"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Telegram</h4>
+                                <p class="text-gray-300">@apeme_soporte</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h4 class="text-xl font-bold mb-4">¿Por qué elegir nuestra plataforma?</h4>
+                        <ul class="space-y-3">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> <strong>Específica para asociaciones</strong> - No es una solución genérica</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> <strong>Implementación rápida</strong> - 4 semanas para MVP</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> <strong>Soporte en español</strong> - Equipo local</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> <strong>Escalable</strong> - Crece con tu asociación</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> <strong>Formación incluida</strong> - Para administradores y usuarios</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6">Formulario de Contacto</h3>
+                    <form id="contact-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block mb-2">Nombre *</label>
+                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" placeholder="Tu nombre">
+                            </div>
+                            <div>
+                                <label class="block mb-2">Apellidos *</label>
+                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" placeholder="Tus apellidos">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Email *</label>
+                            <input type="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" placeholder="tu@email.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Teléfono *</label>
+                            <input type="tel" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" placeholder="+34 600 123 456">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Asociación/Organización *</label>
+                            <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" placeholder="Nombre de tu asociación">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Mensaje</label>
+                            <textarea class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 h-32 focus:outline-none focus:border-blue-500" placeholder="¿En qué podemos ayudarte?"></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span class="text-sm">Acepto la política de privacidad y recibir información sobre la plataforma</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-all">
+                            <i class="fas fa-paper-plane mr-2"></i> Solicitar Demo Gratuita
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="bg-blue-600 text-white font-bold text-2xl p-3 rounded-xl">A</div>
+                        <div class="ml-4">
+                            <h2 class="text-2xl font-bold text-white">APEME <span class="text-blue-400">Alicante</span></h2>
+                            <p class="text-sm">Plataforma de Gobernanza Digital</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 max-w-md">Transformando la participación democrática a través de la tecnología. Especialistas en soluciones digitales para asociaciones provinciales.</p>
+                </div>
+                
+                <div>
+                    <div class="flex space-x-6 mb-8">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-sm">© 2025 APEME Alicante. Todos los derechos reservados.</p>
+                        <p class="text-sm mt-2"><a href="#" class="hover:text-white">Política de privacidad</a> | <a href="#" class="hover:text-white">Términos de servicio</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-sm">
+                    Esta es una demostración de la plataforma de gobernanza digital para APEME Alicante. 
+                    <br class="hidden md:block">
+                    El código fuente completo y la documentación técnica están disponibles para evaluación.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Te contactaremos en menos de 24 horas para agendar la demo.');
+            this.reset();
+        });
+
+        // Simple vote simulation
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Votar Ahora')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('En la demo real, esto abriría el panel de votación. ¡Tu voto ha sido registrado!');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -18,7 +18,10 @@ export class AuthService {
       throw new Error('Formato de teléfono inválido. Usa formato internacional: +34XXXXXXXXX');
     }
 
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    // Sin Twilio, DEMO_OTP_CODE permite entrar con un código fijo conocido (solo para demos)
+    const code = !twilioConfigured && process.env.DEMO_OTP_CODE
+      ? process.env.DEMO_OTP_CODE
+      : Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
     await prisma.oTPCode.create({
